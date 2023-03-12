@@ -1,7 +1,7 @@
 package com.avance2.Controller;
 
 import com.avance2.Domain.domain;
-import com.avance2.Service.EstadoService;
+import com.avance2.Service.UsuarioService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,40 +12,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 @Controller
 public class IndexController {
-
+    
     @Autowired
-    EstadoService estadoService;
+    UsuarioService usuarioService;
     
     @GetMapping("/")
     public String inicio(Model model) {
-        var estados = estadoService.getEstados();
-        model.addAttribute("estados", estados);
+        var usuarios = usuarioService.getUsuario();
+        model.addAttribute("usuarios", usuarios);
         
                
         return "index";
     }   
     
-    @GetMapping("/nuevoEstado")
-    public String nuevoEstado(domain estado){
-        return "modificarEstado";
+    @GetMapping("/nuevoUsuario")
+    public String nuevoUsuario(domain usuario){
+        return "modificarUsuario";
     }
     
-    @PostMapping("/guardarEstado")
-    public String guardarEstado(domain estado) {
-        estadoService.save(estado);
+    @PostMapping("/guardarUsuario")
+    public String guardarUsuario(domain usuario) {
+        usuarioService.save(usuario);
         return "redirect:/";
     }
     
-    @GetMapping("/modificarEstado/{idPais}")
-    public String modificarEstado(domain estado, Model model){
-        estado = estadoService.getEstado(estado);
-        model.addAttribute("estado", estado);
-        return "modificarEstado";
+    @GetMapping("/modificarUsuario/{idUsuario}")
+    public String modificarUsuario(domain usuario, Model model){
+        usuario = usuarioService.getUsuario(usuario);
+        model.addAttribute("cliente", usuario);
+        return "modificarUsuario";
     }
     
-    @GetMapping("/eliminarEstado/{idPais}")
-    public String eliminarEstado(domain estado){
-        estadoService.delete(estado);
+    @GetMapping("/eliminarUsuario/{idUsuario}")
+    public String eliminarUsuario(domain usuario){
+        usuarioService.delete(usuario);
         return "redirect:/";
     }
 }

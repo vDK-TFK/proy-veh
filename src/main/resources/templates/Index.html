@@ -6,33 +6,33 @@
         <link href="/css/estilo1.css" rel="stylesheet" type="text/css"/> 
     </head>
     <body>
-        <h2>Lista de Estados</h2>
-        <a class="nuevo" th:href="@{/nuevoEstado}">Nuevo estado</a>
+        <h2>Lista de usuarios</h2>
+        <a class="nuevo" th:href="@{/nuevoUsuario}">Nuevo Usuario</a>
         <br/>
         <br/>
-        <div th:if="${estados != null and !estados.empty}">
+        <div th:if="${usuarios != null and !usuarios.empty}">
             <table border="1">
                 <thead>
                 <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Correo</th>
-                <th>Telefono</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Contraseña</th>
                 <th colspan="2">Acciones</th>
                 </thead>
                 <tbody>
-                    <tr th:each="item : ${estados}">
-                        <td th:text="${item.nombrePais}"></td>
-                        <td th:text="${item.capital}"></td>
-                        <td th:text="${item.poblacion}"></td>
-                        <td th:text="${item.moneda}"></td>
-                        <td><a th:href="@{/modificarEstado/{id}(id=${item.idPais})}">Modificar</a></td>
-                        <td><a th:href="@{/eliminarEstado/{id}(id=${item.idPais})}">Eliminar</a></td>
+                    <tr th:each="item : ${usuarios}">
+                        <td th:text="${item.nombre}"></td>
+                        <td th:text="${item.primApellido}"></td>
+                        <td th:text="${item.usuario}"></td>
+                        <td th:text="${item.password}"></td>
+                        <td><a th:href="@{/modificarUsuario/{id}(id=${item.idUsuario})}">Modificar</a></td>
+                        <td><a th:href="@{/eliminarUsuario/{id}(id=${item.idUsuario})}">Eliminar</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div th:if="${estados == null or estados.empty}">
-            La lista de estados esta vacia...
+        <div th:if="${usuarios == null or usuarios.empty}">
+            La lista de usuarios esta vacia...
         </div>
     </body>
 </html>
